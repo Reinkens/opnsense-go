@@ -1,0 +1,22 @@
+---
+name: caddy
+reconfigureEndpoint: "/caddy/service/reconfigure"
+resources:
+  - name: ReverseProxyDomain
+    filename: reverse_proxy
+    monad: reverse_proxy
+    endpoints:
+      add: "/caddy/reverse_proxy/add_reverse_proxy"
+      get: "/caddy/reverse_proxy/get_reverse_proxy"
+      update: "/caddy/reverse_proxy/set_reverse_proxy"
+      delete: "/caddy/reverse_proxy/del_reverse_proxy"
+    attrs:
+      - name: Name
+        type: string
+        key: name
+      - name: Url
+        type: string
+        key: url
+      - name: Role
+        type: SelectedMap
+        key: role
