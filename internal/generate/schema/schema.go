@@ -39,6 +39,8 @@ func (a *AttrData) UnmarshalYAML(unmarshal func(interface{}) error) error {
 		a.Type = "api.SelectedMapList"
 	} else if d["type"] == "SelectedMapListNL" {
 		a.Type = "api.SelectedMapListNL"
+	} else if d["type"] == "ListSelectedMap" {
+		a.Type = "api.ListSelectedMap"		
 	}
 
 	return nil

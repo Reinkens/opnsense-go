@@ -1,4 +1,4 @@
-module github.com/reinkens/opnsense-go
+module github.com/browningluke/opnsense-go
 
 go 1.23.0
 

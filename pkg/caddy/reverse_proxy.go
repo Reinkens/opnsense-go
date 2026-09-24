@@ -7,37 +7,46 @@ import (
 	"github.com/browningluke/opnsense-go/pkg/api"
 )
 
-var ReverseProxyDomainOpts = api.ReqOpts{
+var ReverseProxyOpts = api.ReqOpts{
 	AddEndpoint:         "/caddy/reverse_proxy/add_reverse_proxy",
 	GetEndpoint:         "/caddy/reverse_proxy/get_reverse_proxy",
 	UpdateEndpoint:      "/caddy/reverse_proxy/set_reverse_proxy",
 	DeleteEndpoint:      "/caddy/reverse_proxy/del_reverse_proxy",
 	ReconfigureEndpoint: caddyReconfigureEndpoint,
-	Monad:               "reverse_proxy",
+	Monad:               "reverse",
 }
 
 // Data structs
 
-type ReverseProxyDomain struct {
-	Name string          `json:"name"`
-	Url  string          `json:"url"`
-	Role api.SelectedMap `json:"role"`
+type ReverseProxy struct {
+	Enabled             string          `json:"enabled"`
+	FromDomain          string          `json:"FromDomain"`
+	FromPort            string          `json:"FromPort"`
+	AccessList          api.SelectedMap `json:"accesslist"`
+	Description         string          `json:"description"`
+	DnsChallenge        string          `json:"DnsChallenge"`
+	CustomCertificate   api.SelectedMap `json:"CustomCertificate"`
+	AccessLog           string          `json:"AccessLog"`
+	DynDns              string          `json:"DynDns"`
+	AcmePassthrough     string          `json:"AcmePassthrough"`
+	ClientAuthMode      api.SelectedMap `json:"ClientAuthMode"`
+	ClientAuthTrustPool api.SelectedMap `json:"ClientAuthTrustPool"`
 }
 
 // CRUD operations
 
-func (c *Controller) AddReverseProxyDomain(ctx context.Context, resource *ReverseProxyDomain) (string, error) {
-	return api.Add(c.Client(), ctx, ReverseProxyDomainOpts, resource)
+func (c *Controller) AddReverseProxy(ctx context.Context, resource *ReverseProxy) (string, error) {
+	return api.Add(c.Client(), ctx, ReverseProxyOpts, resource)
 }
 
-func (c *Controller) GetReverseProxyDomain(ctx context.Context, id string) (*ReverseProxyDomain, error) {
-	return api.Get(c.Client(), ctx, ReverseProxyDomainOpts, &ReverseProxyDomain{}, id)
+func (c *Controller) GetReverseProxy(ctx context.Context, id string) (*ReverseProxy, error) {
+	return api.Get(c.Client(), ctx, ReverseProxyOpts, &ReverseProxy{}, id)
 }
 
-func (c *Controller) UpdateReverseProxyDomain(ctx context.Context, id string, resource *ReverseProxyDomain) error {
-	return api.Update(c.Client(), ctx, ReverseProxyDomainOpts, resource, id)
+func (c *Controller) UpdateReverseProxy(ctx context.Context, id string, resource *ReverseProxy) error {
+	return api.Update(c.Client(), ctx, ReverseProxyOpts, resource, id)
 }
 
-func (c *Controller) DeleteReverseProxyDomain(ctx context.Context, id string) error {
-	return api.Delete(c.Client(), ctx, ReverseProxyDomainOpts, id)
+func (c *Controller) DeleteReverseProxy(ctx context.Context, id string) error {
+	return api.Delete(c.Client(), ctx, ReverseProxyOpts, id)
 }
