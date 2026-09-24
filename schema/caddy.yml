@@ -95,9 +95,12 @@ resources:
       - name: AcmePassthrough
         type: string
         key: AcmePassthrough
-      # - name: DisableTls
-      #   type: ListSelectedMap
-      #   key: DisableTls       
+      - name: DisableTls
+        type: SelectedMap
+        key: DisableTls
+      - name: DnsChallengeOverrideDomain
+        type: string
+        key: DnsChallengeOverrideDomain
       - name: ClientAuthMode
         type: SelectedMap
         key: ClientAuthMode                                   

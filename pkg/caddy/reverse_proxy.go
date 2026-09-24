@@ -20,18 +20,20 @@ var ReverseProxyOpts = api.ReqOpts{
 // Data structs
 
 type ReverseProxy struct {
-	Enabled             string          `json:"enabled"`
-	FromDomain          string          `json:"FromDomain"`
-	FromPort            string          `json:"FromPort"`
-	AccessList          api.SelectedMap `json:"accesslist"`
-	Description         string          `json:"description"`
-	DnsChallenge        string          `json:"DnsChallenge"`
-	CustomCertificate   api.SelectedMap `json:"CustomCertificate"`
-	AccessLog           string          `json:"AccessLog"`
-	DynDns              string          `json:"DynDns"`
-	AcmePassthrough     string          `json:"AcmePassthrough"`
-	ClientAuthMode      api.SelectedMap `json:"ClientAuthMode"`
-	ClientAuthTrustPool api.SelectedMap `json:"ClientAuthTrustPool"`
+	Enabled                    string          `json:"enabled"`
+	FromDomain                 string          `json:"FromDomain"`
+	FromPort                   string          `json:"FromPort"`
+	AccessList                 api.SelectedMap `json:"accesslist"`
+	Description                string          `json:"description"`
+	DnsChallenge               string          `json:"DnsChallenge"`
+	CustomCertificate          api.SelectedMap `json:"CustomCertificate"`
+	AccessLog                  string          `json:"AccessLog"`
+	DynDns                     string          `json:"DynDns"`
+	AcmePassthrough            string          `json:"AcmePassthrough"`
+	DisableTls                 api.SelectedMap `json:"DisableTls"`
+	DnsChallengeOverrideDomain string          `json:"DnsChallengeOverrideDomain"`
+	ClientAuthMode             api.SelectedMap `json:"ClientAuthMode"`
+	ClientAuthTrustPool        api.SelectedMap `json:"ClientAuthTrustPool"`
 }
 
 // CRUD operations
