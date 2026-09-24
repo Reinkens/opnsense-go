@@ -1,0 +1,106 @@
+---
+name: caddy
+reconfigureEndpoint: "/caddy/service/reconfigure"
+resources:
+  - name: AccessList
+    filename: access_list
+    monad: accesslist
+    endpoints:
+      add: "/caddy/reverse_proxy/add_access_list"
+      get: "/caddy/reverse_proxy/get_access_list"
+      update: "/caddy/reverse_proxy/set_access_list"
+      delete: "/caddy/reverse_proxy/del_access_list"
+    attrs:
+      - name: AccessListName
+        type: string
+        key: accesslistName
+      - name: ClientIps
+        type: SelectedMapList
+        key: clientIps    
+      - name: AccessListInvert
+        type: string
+        key: accesslistInvert   
+      - name: HttpResponseCode
+        type: string
+        key: HttpResponseCode      
+      - name: HttpResponseMessage
+        type: string
+        key: HttpResponseMessage   
+      - name: RequestMatcher
+        type: SelectedMap
+        key: RequestMatcher             
+      - name: Description
+        type: string
+        key: description
+  - name: Handle
+    filename: handle
+    monad: handle
+    endpoints:
+      add: "/caddy/reverse_proxy/add_handle"
+      get: "/caddy/reverse_proxy/get_handle"
+      update: "/caddy/reverse_proxy/set_handle"
+      delete: "/caddy/reverse_proxy/del_handle"
+    attrs:
+      - name: Enabled
+        type: string
+        key: enabled
+      - name: Reverse
+        type: SelectedMap
+        key: reverse
+      - name: Description
+        type: string
+        key: description
+      - name: ToDomain
+        type: SelectedMapList
+        key: ToDomain
+      - name: ToPort
+        type: string
+        key: ToPort                                                                                                                                                                                                                                                              
+  - name: ReverseProxy
+    filename: reverse_proxy
+    monad: reverse
+    endpoints:
+      add: "/caddy/reverse_proxy/add_reverse_proxy"
+      get: "/caddy/reverse_proxy/get_reverse_proxy"
+      update: "/caddy/reverse_proxy/set_reverse_proxy"
+      delete: "/caddy/reverse_proxy/del_reverse_proxy"
+    attrs:
+      - name: Enabled
+        type: string
+        key: enabled
+      - name: FromDomain
+        type: string
+        key: FromDomain
+      - name: FromPort
+        type: string
+        key: FromPort
+      - name: AccessList
+        type: SelectedMap
+        key: accesslist            
+      - name: Description
+        type: string
+        key: description        
+      - name: DnsChallenge
+        type: string
+        key: DnsChallenge
+      - name: CustomCertificate
+        type: SelectedMap
+        key: CustomCertificate           
+      - name: AccessLog
+        type: string
+        key: AccessLog    
+      - name: DynDns
+        type: string
+        key: DynDns       
+      - name: AcmePassthrough
+        type: string
+        key: AcmePassthrough
+      # - name: DisableTls
+      #   type: ListSelectedMap
+      #   key: DisableTls       
+      - name: ClientAuthMode
+        type: SelectedMap
+        key: ClientAuthMode                                   
+      - name: ClientAuthTrustPool
+        type: SelectedMap
+        key: ClientAuthTrustPool

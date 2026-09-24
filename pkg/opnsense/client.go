@@ -6,6 +6,7 @@ import (
 	"github.com/browningluke/opnsense-go/pkg/api"
 	"github.com/browningluke/opnsense-go/pkg/auth"
 	"github.com/browningluke/opnsense-go/pkg/bind"
+	"github.com/browningluke/opnsense-go/pkg/caddy"
 	"github.com/browningluke/opnsense-go/pkg/core"
 	"github.com/browningluke/opnsense-go/pkg/cron"
 	"github.com/browningluke/opnsense-go/pkg/diagnostics"
@@ -29,6 +30,7 @@ import (
 type Client interface {
 	Auth() *auth.Controller
 	Bind() *bind.Controller
+	Caddy() *caddy.Controller
 	Core() *core.Controller
 	Cron() *cron.Controller
 	Diagnostics() *diagnostics.Controller
@@ -63,6 +65,10 @@ func (c *client) Auth() *auth.Controller {
 
 func (c *client) Bind() *bind.Controller {
 	return &bind.Controller{Api: c.a}
+}
+
+func (c *client) Caddy() *caddy.Controller {
+	return &caddy.Controller{Api: c.a}
 }
 
 func (c *client) Core() *core.Controller {
